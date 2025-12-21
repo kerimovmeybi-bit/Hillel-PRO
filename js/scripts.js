@@ -1,3 +1,4 @@
+/*
 //Home-Work 3.1
 // Number
 let number = 10;
@@ -25,3 +26,115 @@ console.log(`${str3} ${str1} ${str2}`);
 //Home-Work 3.3
 const n = prompt("10369");
 console.log(n.split('').join(' '));
+*/
+
+//Home-Work 4.1
+let userName = prompt("Будь ласка, введіть ваше ім'я:");
+alert(`Hello, ${userName}! How are you?`);
+
+//Home-Work 4.2
+let number = prompt("Введіть тризначне число:");
+number = Math.abs(number); // на випадок від’ємного числа
+
+let a = Math.floor(number / 100);        // сотні
+let b = Math.floor((number / 10) % 10);  // десятки
+let c = number % 10;                     // одиниці
+
+// 1. Чи всі цифри однакові?
+if (a === b && b === c) {
+    console.log("Усі цифри однакові");
+} else {
+    console.log("Не всі цифри однакові");
+}
+
+// 2. Чи є серед цифр однакові?
+if (a === b || a === c || b === c) {
+    console.log("Є однакові цифри");
+} else {
+    console.log("Усі цифри різні");
+}
+
+//Home-Work 4.3
+// 1. Рік народження
+let birthYear = prompt("Введіть рік вашого народження:");
+if (birthYear === null) {
+    alert("Шкода, що Ви не захотіли ввести свій рік народження");
+} else {
+
+    // 2. Місто
+    let city = prompt("Введіть місто, в якому ви живете:");
+    if (city === null) {
+        alert("Шкода, що Ви не захотіли ввести своє місто");
+    } else {
+
+        // 3. Вид спорту
+        let sport = prompt("Введіть ваш улюблений вид спорту:");
+        if (sport === null) {
+            alert("Шкода, що Ви не захотіли ввести свій улюблений вид спорту");
+        } else {
+
+            let currentYear = new Date().getFullYear();
+            let age = currentYear - birthYear;
+
+            // Повідомлення про місто
+            let cityMessage = "";
+            switch (city.toLowerCase()) {
+                case "київ":
+                    cityMessage = "Ти живеш у столиці України.";
+                    break;
+                case "вашингтон":
+                    cityMessage = "Ти живеш у столиці США.";
+                    break;
+                case "лондон":
+                    cityMessage = "Ти живеш у столиці Великої Британії.";
+                    break;
+                default:
+                    cityMessage = `Ти живеш у місті ${city}.`;
+            }
+
+            // Повідомлення про спорт
+            let sportMessage = "";
+            switch (sport.toLowerCase()) {
+                case "футбол":
+                    sportMessage = "Круто! Хочеш стати Ліонелем Мессі?";
+                    break;
+                case "бокс":
+                    sportMessage = "Круто! Хочеш стати Олександром Усиком?";
+                    break;
+                case "теніс":
+                    sportMessage = "Круто! Хочеш стати Сереною Вільямс?";
+                    break;
+                default:
+                    sportMessage = `Твій улюблений спорт — ${sport}.`;
+            }
+
+            // Загальне повідомлення
+            alert(
+                `Твій вік: ${age}\n` +
+                `${cityMessage}\n` +
+                `${sportMessage}`
+            );
+        }
+    }
+}
+
+//Home-Work 4.4
+let numOrStr = prompt('input number or string');
+console.log(numOrStr);
+
+switch (true) {
+    case numOrStr === null:
+        console.log('ви скасували');
+        break;
+
+    case numOrStr.trim() === '':
+        console.log('Empty String');
+        break;
+
+    case isNaN(+numOrStr):
+        console.log('number is Ba_NaN');
+        break;
+
+    default:
+        console.log('OK!');
+}
