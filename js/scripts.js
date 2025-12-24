@@ -28,6 +28,7 @@ const n = prompt("10369");
 console.log(n.split('').join(' '));
 */
 
+/*
 //Home-Work 4.1
 let userName = prompt("Будь ласка, введіть ваше ім'я:");
 alert(`Hello, ${userName}! How are you?`);
@@ -138,3 +139,41 @@ switch (true) {
     default:
         console.log('OK!');
 }
+*/
+
+//Home-Work 5.1
+let result = '';
+
+for (let i = 20; i <= 30; i += 0.5) {
+  result += i + ' ';
+}
+
+console.log(result.trim());
+
+//Home-Work 5.2
+const rate = 26;
+
+for (let dollars = 10; dollars <= 100; dollars += 10) {
+  console.log(dollars + ' доларів = ' + (dollars * rate) + ' гривень');
+}
+
+//Home-Work 5.3
+const N = Number(prompt('Введіть ціле число N'));
+
+for (let i = 1; i <= 100; i++) {
+  if (i * i <= N) {
+    console.log(i);
+  }
+}
+
+//Home-Work 5.4
+const n = +prompt('Введіть число');
+
+let prime = n > 1;
+
+for (let i = 2; i * i <= n && prime; i++) {
+  if (n % i === 0) prime = false;
+}
+
+console.log(prime ? 'Число просте' : 'Число не просте');
+
