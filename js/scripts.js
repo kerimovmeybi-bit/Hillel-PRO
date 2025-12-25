@@ -141,6 +141,7 @@ switch (true) {
 }
 */
 
+/*
 //Home-Work 5.1
 let result = '';
 
@@ -161,7 +162,7 @@ for (let dollars = 10; dollars <= 100; dollars += 10) {
 const N = Number(prompt('Введіть ціле число N'));
 
 for (let i = 1; i <= 100; i++) {
-  if (i * i <= N) {
+  if (i * i <= N) break;{
     console.log(i);
   }
 }
@@ -172,8 +173,78 @@ const n = +prompt('Введіть число');
 let prime = n > 1;
 
 for (let i = 2; i * i <= n && prime; i++) {
-  if (n % i === 0) prime = false;
+  if (n % i === 0) prime = false; break;
 }
 
 console.log(prime ? 'Число просте' : 'Число не просте');
+*/
+
+
+//Home-Work 6.1
+//Об'єкта користувача
+const user = {
+  name: "Олексій",
+  age: 25,
+  city: "Київ",
+
+  //Відображення даних
+  getInfo() {
+    console.log(
+      `Ім'я: ${this.name}, Вік: ${this.age}, Місце проживання: ${this.city}`
+    );
+  }
+};
+
+user.getInfo();
+
+//Home-Work 6.2
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+
+console.log(evenNumbers); 
+
+//Home-Work 6.3
+const contactBook = {
+  // Властивість з масивом контактів
+  contacts: [
+    {
+      name: "Олексій",
+      phone: "+380501234567",
+      email: "oleksii@gmail.com"
+    },
+    {
+      name: "Марія",
+      phone: "+380671112233",
+      email: "maria@gmail.com"
+    }
+  ],
+
+  // Пошук нового контакта 
+  findContact(name) {
+    return this.contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+  },
+
+  // Додаємо новий контакт 
+  addContact(name, phone, email) {
+    this.contacts.push({
+      name,
+      phone,
+      email
+    });
+  }
+};
+
+// Додавання контакту
+contactBook.addContact("Іван", "+380931234567", "ivan@gmail.com");
+
+// Пошук контакту
+const result = contactBook.findContact("Марія");
+console.log(result);
+
+// Перегляд усіх контактів
+console.log(contactBook.contacts);
+
 
