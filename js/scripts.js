@@ -179,7 +179,7 @@ for (let i = 2; i * i <= n && prime; i++) {
 console.log(prime ? 'Число просте' : 'Число не просте');
 */
 
-
+/*
 //Home-Work 6.1
 //Об'єкта користувача
 const user = {
@@ -203,6 +203,8 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
 const evenNumbers = numbers.filter(num => num % 2 === 0);
 
 console.log(evenNumbers); 
+
+
 
 //Home-Work 6.3
 const contactBook = {
@@ -246,5 +248,56 @@ console.log(result);
 
 // Перегляд усіх контактів
 console.log(contactBook.contacts);
+
+*/
+
+//Home-Work 7.1
+function func(str, chars) {
+  return str
+    .split('')
+    .filter(ch => !chars.includes(ch))
+    .join('');
+}
+
+// приклад
+const inputStr = prompt('Введіть рядок:');
+const symbols = prompt('Введіть символи для видалення (без пробілів):').split('');
+
+console.log(func(inputStr, symbols));
+
+//Home-Work 7.2
+function averageNumbers(arr) {
+  let sum = 0;
+  let count = 0;
+
+  for (let item of arr) {
+    if (typeof item === 'number') {
+      sum += item;
+      count++;
+    }
+  }
+
+  return count ? sum / count : 0;
+}
+
+// приклад
+const arr = [10, 'text', true, 20, null, 30, {}, 40];
+console.log(averageNumbers(arr)); // 25
+
+
+//Home-Work 7.3
+function removeElement(array, item) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    if (array[i] === item) {
+      array.splice(i, 1);
+    }
+  }
+  return array;
+}
+
+// приклад
+const array = [1, 3, 4, 6, 2, 5, 7];
+removeElement(array, 4);
+console.log(array); 
 
 
