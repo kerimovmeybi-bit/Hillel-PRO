@@ -251,6 +251,8 @@ console.log(contactBook.contacts);
 
 */
 
+
+/*
 //Home-Work 7.1
 function func(str, chars) {
   return str
@@ -300,4 +302,45 @@ const array = [1, 3, 4, 6, 2, 5, 7];
 removeElement(array, 4);
 console.log(array); 
 
+*/
 
+
+
+//Home-Work 8.1
+function createSum() {
+  let total = 0;
+
+  return function (num) {
+    total += num;
+    return total;
+  };
+}
+
+const sum = createSum();
+
+console.log(sum(4)); 
+console.log(sum(3)); 
+console.log(sum(10)); 
+
+
+//Home-Work 8.2
+function name(a) {
+  return function (b) {
+    return a * b;
+  };
+}
+const result = name(5)(2);
+console.log(result); 
+
+
+//Home-Work 8.3
+function askNumber() {
+  let lastInput;
+
+  for (let i = 0; i < 10; i++) {
+    lastInput = prompt('Введіть число більше 100');
+    if (+lastInput > 100) break;
+  }
+
+  console.log(lastInput);
+}
