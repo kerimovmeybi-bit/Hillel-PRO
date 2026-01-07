@@ -319,8 +319,9 @@ function createSum() {
 const sum = createSum();
 
 console.log(sum(4)); 
-console.log(sum(3)); 
+console.log(sum(6)); 
 console.log(sum(10)); 
+console.log(sum(7)); 
 
 
 //Home-Work 8.2
