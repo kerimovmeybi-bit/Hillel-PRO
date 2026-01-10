@@ -305,7 +305,7 @@ console.log(array);
 */
 
 
-
+/*
 //Home-Work 8.1
 function createSum() {
   let total = 0;
@@ -345,3 +345,30 @@ function askNumber() {
 
   console.log(lastInput);
 }
+*/
+
+
+//Home-Work 9.1
+let ladder = {
+  step: 0,
+
+  up() {
+    this.step++;
+    return this; 
+  },
+
+  down() {
+    this.step--;
+    return this; 
+  },
+
+  showStep() {
+    console.log(this.step);
+    return this; 
+  }
+};
+ladder
+  .up()
+  .up()
+  .down()
+  .showStep(); 
