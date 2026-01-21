@@ -426,3 +426,15 @@ const btn = document.getElementById('btn');
 btn.addEventListener('click', () => {
     text.classList.toggle('red');
 });
+
+
+//Home-Work 11.3
+const imagesCount = 9;
+const randomNumber = Math.floor(Math.random() * imagesCount) + 1;
+
+const img = document.getElementById('randomImage');
+img.src = `./images/${randomNumber}.jpg`;
+console.log(randomNumber);
+
+
+             
