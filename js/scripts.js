@@ -347,7 +347,7 @@ function askNumber() {
 }
 */
 
-
+/*
 //Home-Work 9.1
 let ladder = {
   step: 0,
@@ -372,3 +372,57 @@ ladder
   .up()
   .down()
   .showStep(); 
+  */
+
+/*
+ //Home-Work 10.1
+ function sumSalaries(data) {
+  let sum = 0;
+  if (Array.isArray(data)) {
+    for (let i = 0; i < data.length; i++) {
+      sum += data[i].salary;
+    }
+    return sum;
+  }
+  for (let key in data) {
+    sum += sumSalaries(data[key]);
+  }
+  return sum;
+}
+console.log(sumSalaries(company)); 
+*/
+
+
+//Home-Work 11.1
+const table = document.getElementById('pifagor');
+
+for (let i = 0; i <= 10; i++) {
+    const row = document.createElement('tr');
+
+    for (let j = 0; j <= 10; j++) {
+        const cell = document.createElement('td');
+
+        if (i === 0 && j === 0) {
+            cell.textContent = '';
+        } else if (i === 0) {
+            cell.textContent = j;
+        } else if (j === 0) {
+            cell.textContent = i;
+        } else {
+            cell.textContent = i * j;
+        }
+
+        row.appendChild(cell);
+    }
+
+    table.appendChild(row);
+}
+
+
+//Home-Work 11.2
+const text = document.getElementById('text');
+const btn = document.getElementById('btn');
+
+btn.addEventListener('click', () => {
+    text.classList.toggle('red');
+});
