@@ -6,33 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hilel-PRO</title>
     <link rel="stylesheet" href="./css/styles.css">
-    <style>
-        table {
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-
-        td {
-            border: 1px solid #000;
-            padding: 8px 12px;
-            text-align: center;
-        }
-
-        td:first-child,
-        tr:first-child td {
-            font-weight: bold;
-            background: #f0f0f0;
-        }
-    </style>
 </head>
 
 <body>
+    <p>Home-work 12.1</p>
+    <button id="setLink">Ввести посилання</button>
+    <button id="goLink">Перейти за посиланням</button>
+    <p>Home-work 12.2</p>
+    <div id="buttons-container">
+        <button>Кнопка 1</button>
+        <button>Кнопка 2</button>
+        <button>Кнопка 3</button>
+    </div>
+    <p>Home-work 12.3</p>
+    <h1>Список завдань</h1>
+    <ul id="todo-list">
+        <li>Завдання 1 <button class="delete-btn">Видалити</button></li>
+        <li>Завдання 2 <button class="delete-btn">Видалити</button></li>
+        <li>Завдання 3 <button class="delete-btn">Видалити</button></li>
+    </ul>
 
-    <table id="pifagor"></table>
-    <p id="text">Привіт, якщо натиснишь на цю кнопку я зміню колір!</p>
-    <button id="btn">Змінити колір</button>
-    <h2>Випадкове зображення</h2>
-    <img id="randomImage" alt="random" width="300">
+    <div>
+        <input type="text" id="new-task-input" placeholder="Додати нове завдання">
+        <button id="add-task-btn">Додати</button>
+    </div>
+
 
 
     <script src="./js/scripts.js"></script>
