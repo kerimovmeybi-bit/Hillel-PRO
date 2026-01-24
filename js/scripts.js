@@ -392,7 +392,7 @@ ladder
 console.log(sumSalaries(company)); 
 */
 
-
+/*
 //Home-Work 11.1
 const table = document.getElementById('pifagor');
 
@@ -436,5 +436,60 @@ const img = document.getElementById('randomImage');
 img.src = `./images/${randomNumber}.jpg`;
 console.log(randomNumber);
 
+*/
+
+//Home-Work 12.1
+let savedLink = "";
+
+  document.getElementById("setLink").addEventListener("click", () => {
+    const link = prompt("Введіть посилання:");
+
+    if (link) {
+      savedLink = link;
+      alert("Посилання збережено ");
+    }
+  });
+
+  document.getElementById("goLink").addEventListener("click", () => {
+    if (savedLink) {
+      window.location.href = savedLink;
+    } else {
+      alert("Спочатку введіть посилання!");
+    }
+  });
+
+
+  //Home-work 12.2
+const container = document.getElementById("buttons-container");
+
+container.addEventListener("click", (event) => {
+  // перевіряємо, чи клік був саме по кнопці
+  if (event.target.tagName === "BUTTON") {
+    alert(`Клікнуто на кнопці: ${event.target.textContent}`);
+  }
+});
+
+
+//Home-Work 12.3
+const todoList = document.getElementById('todo-list');
+const addTaskBtn = document.getElementById('add-task-btn');
+const newTaskInput = document.getElementById('new-task-input');
+todoList.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('delete-btn')) {
+        const listItem = event.target.closest('li'); 
+        if (listItem) {
+            listItem.remove(); 
+        }
+    }
+});
+addTaskBtn.addEventListener('click', function() {
+    const taskText = newTaskInput.value.trim();
+    if (taskText !== '') {
+        const newLi = document.createElement('li');
+        newLi.innerHTML = `${taskText} <button class="delete-btn">Видалити</button>`;
+        todoList.appendChild(newLi);
+        newTaskInput.value = '';
+    }
+});
 
              
