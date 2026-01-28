@@ -438,6 +438,7 @@ console.log(randomNumber);
 
 */
 
+/*
 //Home-Work 12.1
 let savedLink = "";
 
@@ -491,5 +492,70 @@ addTaskBtn.addEventListener('click', function() {
         newTaskInput.value = '';
     }
 });
+*/
+
+//Home-Work 13.1
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // поля
+  const name = document.getElementById('name');
+  const message = document.getElementById('message');
+  const phone = document.getElementById('phone');
+  const email = document.getElementById('email');
+
+  // регулярні вирази
+  const phoneRegex = /^\+380\d{9}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  let isValid = true;
+
+  // очищення помилок
+  document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+  // Name
+  if (name.value.trim() === '') {
+    showError(name, 'Name is required');
+    isValid = false;
+  }
+
+  // Message
+  if (message.value.trim().length < 5) {
+    showError(message, 'Message must be at least 5 characters');
+    isValid = false;
+  }
+
+  // Phone
+  if (!phoneRegex.test(phone.value.trim())) {
+    showError(phone, 'Phone must start with +380 and contain 12 digits');
+    isValid = false;
+  }
+
+  // Email
+  if (!emailRegex.test(email.value.trim())) {
+    showError(email, 'Enter a valid email');
+    isValid = false;
+  }
+
+  // якщо все ок
+  if (isValid) {
+    const data = {
+      name: name.value.trim(),
+      message: message.value.trim(),
+      phone: phone.value.trim(),
+      email: email.value.trim(),
+    };
+
+    console.log('Form data:', data);
+    form.reset();
+  }
+});
+
+function showError(input, message) {
+  input.parentElement.querySelector('.error').textContent = message;
+}
+
 
              
