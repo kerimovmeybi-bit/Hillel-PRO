@@ -493,7 +493,7 @@ addTaskBtn.addEventListener('click', function() {
     }
 });
 */
-
+/*
 //Home-Work 13.1
 const form = document.getElementById('contactForm');
 
@@ -556,6 +556,88 @@ form.addEventListener('submit', function (e) {
 function showError(input, message) {
   input.parentElement.querySelector('.error').textContent = message;
 }
+*/
+
+
+//Home-Work 14.1
+const slides = [
+  {
+    img: "./images/image.png",
+    title: "Команда",
+    text: "Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях, коли більшість безсилі.",
+    name: "Олександр Олександровський",
+    role: "Керуючий партнер"
+  },
+  {
+    img: "./images/image1.png",
+    title: "Команда",
+    text: "Ми працюємо швидко, ефективно та завжди доводимо справи до результату.",
+    name: "Ірина Коваль",
+    role: "Партнер"
+  },
+  {
+    img: "./images/image2.png",
+    title: "Команда",
+    text: "Наш досвід дозволяє знаходити рішення там, де інші здаються.",
+    name: "Андрій Мельник",
+    role: "Юрист"
+  }
+];
+
+let currentIndex = 0;
+
+/* elements */
+const image = document.querySelector(".image");
+const subtitle = document.querySelector(".subtitle");
+const text = document.querySelector(".text");
+const name = document.querySelector(".text2");
+const role = document.querySelector(".text3");
+
+const prevBtn = document.querySelector(".click-left");
+const nextBtn = document.querySelector(".click-right");
+const dots = document.querySelectorAll(".dot");
+
+/* render */
+function renderSlide() {
+  const slide = slides[currentIndex];
+
+  image.src = slide.img;
+  subtitle.textContent = slide.title;
+  text.textContent = slide.text;
+  name.textContent = slide.name;
+  role.textContent = slide.role;
+
+  prevBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+  nextBtn.style.visibility = currentIndex === slides.length - 1 ? "hidden" : "visible";
+
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[currentIndex].classList.add("active");
+}
+
+/* arrows */
+nextBtn.addEventListener("click", () => {
+  if (currentIndex < slides.length - 1) {
+    currentIndex++;
+    renderSlide();
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderSlide();
+  }
+});
+
+/* dots */
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    currentIndex = index;
+    renderSlide();
+  });
+});
+
+renderSlide();
 
 
              
