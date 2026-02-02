@@ -584,11 +584,11 @@ const slidesData = [
   }
 ];
 
-
 function renderSlider(slides) {
   let currentIndex = 0;
 
   const image = document.querySelector(".image");
+  const textBlock = document.querySelector(".text-block");
   const subtitle = document.querySelector(".subtitle");
   const text = document.querySelector(".text");
   const name = document.querySelector(".text2");
@@ -598,9 +598,8 @@ function renderSlider(slides) {
   const nextBtn = document.querySelector(".click-right");
   const dotsContainer = document.querySelector(".container-dots");
 
-  dotsContainer.innerHTML = "";
-
   /* ---------- dots ---------- */
+  dotsContainer.innerHTML = "";
   slides.forEach((_, i) => {
     const dot = document.createElement("div");
     dot.classList.add("dot");
@@ -612,7 +611,7 @@ function renderSlider(slides) {
 
   const dots = dotsContainer.querySelectorAll(".dot");
 
-  /* ---------- render ---------- */
+  /* ---------- helpers ---------- */
   function updateButtons() {
     prevBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
     nextBtn.style.visibility = currentIndex === slides.length - 1 ? "hidden" : "visible";
@@ -624,8 +623,8 @@ function renderSlider(slides) {
   }
 
   function changeSlide(index) {
-    image.classList.add("fade-out");
-    text.classList.add("fade-out");
+    image.classList.add("slide-out");
+    textBlock.classList.add("slide-out");
 
     setTimeout(() => {
       const slide = slides[index];
@@ -640,10 +639,8 @@ function renderSlider(slides) {
       updateButtons();
       updateDots();
 
-      image.classList.remove("fade-out");
-      text.classList.remove("fade-out");
-      image.classList.add("fade-in");
-      text.classList.add("fade-in");
+      image.classList.remove("slide-out");
+      textBlock.classList.remove("slide-out");
     }, 300);
   }
 
@@ -664,28 +661,3 @@ function renderSlider(slides) {
 }
 
 renderSlider(slidesData);
-
-function changeSlide(index) {
-  image.classList.add("slide-out");
-  document.querySelector(".text-block").classList.add("slide-out");
-
-  setTimeout(() => {
-    const slide = slides[index];
-    currentIndex = index;
-
-    image.src = slide.img;
-    subtitle.textContent = slide.subtitle;
-    text.textContent = slide.text;
-    name.textContent = slide.name;
-    role.textContent = slide.role;
-
-    updateButtons();
-    updateDots();
-
-    image.classList.remove("slide-out");
-    document.querySelector(".text-block").classList.remove("slide-out");
-
-    image.classList.add("slide-in");
-    document.querySelector(".text-block").classList.add("slide-in");
-  }, 300);
-}
