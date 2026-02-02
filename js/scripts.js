@@ -560,84 +560,132 @@ function showError(input, message) {
 
 
 //Home-Work 14.1
-const slides = [
+const slidesData = [
   {
     img: "./images/image.png",
-    title: "Команда",
+    subtitle: "Команда",
     text: "Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях, коли більшість безсилі.",
     name: "Олександр Олександровський",
     role: "Керуючий партнер"
   },
   {
     img: "./images/image1.png",
-    title: "Команда",
-    text: "Ми працюємо швидко, ефективно та завжди доводимо справи до результату.",
+    subtitle: "Команда",
+    text: "Ми працюємо швидко, прозоро та орієнтовані на результат.",
     name: "Ірина Коваль",
     role: "Партнер"
   },
   {
     img: "./images/image2.png",
-    title: "Команда",
-    text: "Наш досвід дозволяє знаходити рішення там, де інші здаються.",
+    subtitle: "Команда",
+    text: "Наш досвід — це ваша впевненість у складних ситуаціях.",
     name: "Андрій Мельник",
     role: "Юрист"
   }
 ];
 
-let currentIndex = 0;
 
-/* elements */
-const image = document.querySelector(".image");
-const subtitle = document.querySelector(".subtitle");
-const text = document.querySelector(".text");
-const name = document.querySelector(".text2");
-const role = document.querySelector(".text3");
+function renderSlider(slides) {
+  let currentIndex = 0;
 
-const prevBtn = document.querySelector(".click-left");
-const nextBtn = document.querySelector(".click-right");
-const dots = document.querySelectorAll(".dot");
+  const image = document.querySelector(".image");
+  const subtitle = document.querySelector(".subtitle");
+  const text = document.querySelector(".text");
+  const name = document.querySelector(".text2");
+  const role = document.querySelector(".text3");
 
-/* render */
-function renderSlide() {
-  const slide = slides[currentIndex];
+  const prevBtn = document.querySelector(".click-left");
+  const nextBtn = document.querySelector(".click-right");
+  const dotsContainer = document.querySelector(".container-dots");
 
-  image.src = slide.img;
-  subtitle.textContent = slide.title;
-  text.textContent = slide.text;
-  name.textContent = slide.name;
-  role.textContent = slide.role;
+  dotsContainer.innerHTML = "";
 
-  prevBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
-  nextBtn.style.visibility = currentIndex === slides.length - 1 ? "hidden" : "visible";
+  /* ---------- dots ---------- */
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
 
-  dots.forEach(dot => dot.classList.remove("active"));
-  dots[currentIndex].classList.add("active");
+    dot.addEventListener("click", () => changeSlide(i));
+    dotsContainer.append(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll(".dot");
+
+  /* ---------- render ---------- */
+  function updateButtons() {
+    prevBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+    nextBtn.style.visibility = currentIndex === slides.length - 1 ? "hidden" : "visible";
+  }
+
+  function updateDots() {
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[currentIndex].classList.add("active");
+  }
+
+  function changeSlide(index) {
+    image.classList.add("fade-out");
+    text.classList.add("fade-out");
+
+    setTimeout(() => {
+      const slide = slides[index];
+      currentIndex = index;
+
+      image.src = slide.img;
+      subtitle.textContent = slide.subtitle;
+      text.textContent = slide.text;
+      name.textContent = slide.name;
+      role.textContent = slide.role;
+
+      updateButtons();
+      updateDots();
+
+      image.classList.remove("fade-out");
+      text.classList.remove("fade-out");
+      image.classList.add("fade-in");
+      text.classList.add("fade-in");
+    }, 300);
+  }
+
+  /* ---------- arrows ---------- */
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex < slides.length - 1) {
+      changeSlide(currentIndex + 1);
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      changeSlide(currentIndex - 1);
+    }
+  });
+
+  changeSlide(0);
 }
 
-/* arrows */
-nextBtn.addEventListener("click", () => {
-  if (currentIndex < slides.length - 1) {
-    currentIndex++;
-    renderSlide();
-  }
-});
+renderSlider(slidesData);
 
-prevBtn.addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    renderSlide();
-  }
-});
+function changeSlide(index) {
+  image.classList.add("slide-out");
+  document.querySelector(".text-block").classList.add("slide-out");
 
-/* dots */
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
+  setTimeout(() => {
+    const slide = slides[index];
     currentIndex = index;
-    renderSlide();
-  });
-});
 
-renderSlide();
+    image.src = slide.img;
+    subtitle.textContent = slide.subtitle;
+    text.textContent = slide.text;
+    name.textContent = slide.name;
+    role.textContent = slide.role;
 
+    updateButtons();
+    updateDots();
 
-             
+    image.classList.remove("slide-out");
+    document.querySelector(".text-block").classList.remove("slide-out");
+
+    image.classList.add("slide-in");
+    document.querySelector(".text-block").classList.add("slide-in");
+  }, 300);
+}
