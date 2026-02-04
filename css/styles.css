@@ -2,78 +2,79 @@
     text-align: center;
     font-size: 32px;
     margin-top: 20px;
-    color: #3b82f6;
+    color: #000000;
 }
 
-.slider-root {
-    position: relative;
-    width: 600px;
-    margin: 40px auto;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.slider-window {
-    overflow: hidden;
-    border-radius: 12px;
+body {
+    line-height: 1.2;
+    font-size: 18px;
+    background-color: #66deb2;
 }
 
-.slider-track {
-    display: flex;
-    transition: transform 0.4s ease;
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.slide {
-    min-width: 100%;
-}
-
-.slide img {
+.container {
     width: 100%;
-    display: block;
+    margin: 0 auto;
+    max-width: 75%;
 }
 
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: #3b82f6;
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.prev {
-    left: -60px;
-}
-
-.next {
-    right: -60px;
-}
-
-.slider-btn:disabled {
-    opacity: 0;
-    pointer-events: none;
-}
-
-
-.dots {
+.form {
+    background: #fff;
+    padding: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 12px;
 }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #cbd5e1;
+.form__input {
+    min-height: 25px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid;
+}
+
+.form__btn {
+    background: #0be69d;
+    border: none;
     cursor: pointer;
+    width: 100px;
 }
 
-.dot.active {
-    background: #3b82f6;
+.todo-item {
+    display: flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.todo-item--checked {
+    text-decoration: line-through;
+}
+
+.todo-item__description {
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.todo-item__delete {
+    background: #0be69d;
+    border: none;
+    cursor: pointer;
+    width: 95px;
+    padding: 10px;
 }

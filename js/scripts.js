@@ -1,118 +1,82 @@
-//Home-work14.1 
-const slides1 = [
-  {
-    img: "./images/image1.png",
-    title: "Alexander Alexandrovsky",
-    text: "Managing partner"
-  },
-  {
-    img: "./images/image2.png",
-    title: "Oksana Kobzar",
-    text: "Equity partner, Attorney-at-law"
-  },
-  {
-    img: "./images/image3.png",
-    title: "Vladislav Melnik",
-    text: "Associate"
-  }
-];
+//Home-work15.1 
+const form = document.querySelector(".js--form");
+const input = document.querySelector(".js--form__input");
+const todosWrapper = document.querySelector(".js--todos-wrapper");
 
-const slides2 = [
-  {
-    img: "./images/image4.png",
-    title: "Evgeniy Patrikov",
-    text: "Equity partner, Attorney-at-law"
-  },
-  {
-    img: "./images/image5.png",
-    title: "Julia Wolk",
-    text: "Associate, Attorney-at-law"
-  }
-];
-function createSlider(container, slides) {
-  let index = 0;
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-  container.classList.add("slider-root");
-  container.innerHTML = "";
-
-  /* window */
-  const windowEl = document.createElement("div");
-  windowEl.className = "slider-window";
-
-  /* track */
-  const track = document.createElement("div");
-  track.className = "slider-track";
-
-  slides.forEach(slideData => {
-    const slide = document.createElement("div");
-    slide.className = "slide";
-
-    slide.innerHTML = `
-      <img src="${slideData.img}" alt="">
-      ${slideData.title ? `<h3>${slideData.title}</h3>` : ""}
-      ${slideData.text ? `<p>${slideData.text}</p>` : ""}
-    `;
-
-    track.append(slide);
-  });
-
-  windowEl.append(track);
-
-  /* buttons */
-  const prevBtn = document.createElement("button");
-  prevBtn.className = "slider-btn prev";
-  prevBtn.textContent = "‹";
-
-  const nextBtn = document.createElement("button");
-  nextBtn.className = "slider-btn next";
-  nextBtn.textContent = "›";
-
-  /* dots */
-  const dots = document.createElement("div");
-  dots.className = "dots";
-
-  slides.forEach((_, i) => {
-    const dot = document.createElement("div");
-    dot.className = "dot";
-    if (i === 0) dot.classList.add("active");
-
-    dot.addEventListener("click", () => {
-      index = i;
-      update();
-    });
-
-    dots.append(dot);
-  });
-
-  container.append(prevBtn, windowEl, nextBtn, dots);
-
-  const dotsItems = dots.querySelectorAll(".dot");
-
-  function update() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === slides.length - 1;
-
-    dotsItems.forEach(d => d.classList.remove("active"));
-    dotsItems[index].classList.add("active");
-  }
-
-  nextBtn.addEventListener("click", () => {
-    if (index < slides.length - 1) {
-      index++;
-      update();
-    }
-  });
-
-  prevBtn.addEventListener("click", () => {
-    if (index > 0) {
-      index--;
-      update();
-    }
-  });
-
-  update();
+// ---------- helpers ----------
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
-createSlider(document.getElementById("slider1"), slides1);
-createSlider(document.getElementById("slider2"), slides2);
+
+function createTodoItem(todo, index) {
+  const li = document.createElement("li");
+  li.classList.add("todo-item");
+
+  if (todo.completed) {
+    li.classList.add("todo-item--checked");
+  }
+
+  // checkbox
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = todo.completed;
+
+  checkbox.addEventListener("change", () => {
+    todos[index].completed = checkbox.checked;
+    li.classList.toggle("todo-item--checked", checkbox.checked);
+    saveTodos();
+  });
+
+  // text
+  const span = document.createElement("span");
+  span.classList.add("todo-item__description");
+  span.textContent = todo.text;
+
+  // delete button
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("todo-item__delete");
+  deleteBtn.textContent = "Видалити";
+
+  deleteBtn.addEventListener("click", () => {
+    todos.splice(index, 1);
+    renderTodos();
+    saveTodos();
+  });
+
+  // append
+  li.append(checkbox, span, deleteBtn);
+
+  return li;
+}
+
+// ---------- render ----------
+function renderTodos() {
+  todosWrapper.innerHTML = "";
+
+  todos.forEach((todo, index) => {
+    const todoEl = createTodoItem(todo, index);
+    todosWrapper.appendChild(todoEl);
+  });
+}
+
+// ---------- add ----------
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  todos.push({
+    text,
+    completed: false,
+  });
+
+  input.value = "";
+  renderTodos();
+  saveTodos();
+});
+
+// ---------- init ----------
+renderTodos();
