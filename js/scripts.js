@@ -1,77 +1,88 @@
-//Home-work16.1
-function Student(name, surname, birthYear, grades) {
-  this.name = name;
-  this.surname = surname;
-  this.birthYear = birthYear;
-  this.grades = grades;
-  this.attendance = new Array(25); // масив на 25 занять
+//Home-work17.1
+class Calculator {
+  add(a, b) {
+    return a + b;
+  }
+
+  subtract(a, b) {
+    return a - b;
+  }
+
+  multiply(a, b) {
+    return a * b;
+  }
+
+  divide(a, b) {
+    if (b === 0) {
+      throw new Error("Ділення на нуль неможливе");
+    }
+    return a / b;
+  }
 }
 
-// Вік студента
-Student.prototype.getAge = function () {
-  const currentYear = new Date().getFullYear();
-  return currentYear - this.birthYear;
-};
+const calc = new Calculator();
 
-// Середній бал
-Student.prototype.getAverageGrade = function () {
-  const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
-  return sum / this.grades.length;
-};
+console.log(calc.add(5, 3));        
+console.log(calc.subtract(10, 4));  
+console.log(calc.multiply(3, 6));   
+console.log(calc.divide(8, 2));     
 
-// Відмітка присутності
-Student.prototype.present = function () {
-  const index = this.attendance.indexOf(undefined);
-  if (index !== -1) {
-    this.attendance[index] = true;
-  }
-};
-
-// Відмітка відсутності
-Student.prototype.absent = function () {
-  const index = this.attendance.indexOf(undefined);
-  if (index !== -1) {
-    this.attendance[index] = false;
-  }
-};
-
-// Підсумок
-Student.prototype.summary = function () {
-  const avgGrade = this.getAverageGrade();
-
-  const attendedClasses = this.attendance.filter(v => v === true).length;
-  const totalClasses = this.attendance.filter(v => v !== undefined).length;
-  const attendanceRate = totalClasses ? attendedClasses / totalClasses : 0;
-
-  if (avgGrade > 90 && attendanceRate > 0.9) {
-    return "Молодець!";
+//Home-work17.2
+class Coach {
+  constructor(name, specialization, rating) {
+    this.name = name;
+    this.specialization = specialization;
+    this.rating = rating;
   }
 
-  if (avgGrade > 90 || attendanceRate > 0.9) {
-    return "Добре, але можна краще";
+  displayInfo() {
+    console.log(
+      `Coach: ${this.name}, Specialization: ${this.specialization}, Rating: ${this.rating}`
+    );
+  }
+}
+
+const coach1 = new Coach('John Doe', 'Fitness', 4.7);
+const coach2 = new Coach('Alice Smith', 'Yoga', 4.9);
+
+coach1.displayInfo();
+coach2.displayInfo();
+
+//Home-work17.3
+class BankAccount {
+  constructor(initialBalance) {
+    this.balance = initialBalance;
   }
 
-  return "Редиска!";
-};
-const student1 = new Student("Іван", "Петренко", 2001, [95, 92, 98, 100]);
-const student2 = new Student("Олена", "Коваль", 2000, [78, 82, 85, 80]);
+  getBalance() {
+    return this.balance;
+  }
 
-// Відвідуваність
-student1.present();
-student1.present();
-student1.present();
-student1.absent();
+  deposit(amount) {
+    if (amount <= 0) {
+      throw new Error('Сума для внесення має бути більшою за 0');
+    }
+    this.balance += amount;
+  }
 
-student2.present();
-student2.absent();
-student2.absent();
+  withdraw(amount) {
+    if (amount <= 0) {
+      throw new Error('Сума для зняття має бути більшою за 0');
+    }
+    if (amount > this.balance) {
+      throw new Error('Недостатньо коштів на рахунку');
+    }
+    this.balance -= amount;
+  }
+}
 
-// Перевірка
-console.log(student1.getAge());
-console.log(student1.getAverageGrade());
-console.log(student1.summary()); // "Молодець!"
+const account1 = new BankAccount(1000);
 
-console.log(student2.getAge());
-console.log(student2.getAverageGrade());
-console.log(student2.summary()); // "Редиска!"
+console.log(account1.getBalance()); 
+
+account1.deposit(500);
+console.log(account1.getBalance()); 
+
+account1.withdraw(200);
+console.log(account1.getBalance()); 
 
