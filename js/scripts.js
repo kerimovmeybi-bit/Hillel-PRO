@@ -1,6 +1,6 @@
 //Home-work18.1
 // 1. Початковий час (у секундах)
-let totalSeconds = 17; // 01:27
+let totalSeconds = 87; // 01:27
 
 const timerEl = document.getElementById('timer');
 const startBtn = document.getElementById('start');
