@@ -1,36 +1,53 @@
-//Home-work18.1
-// 1. Початковий час (у секундах)
-let totalSeconds = 17; // 01:27
+// Home-work19.1
+const API_KEY = 'a2e213d0056dfafe85d1d4ef315eae5e';
+const CITY = 'Odessa';
+const URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&lang=uk&appid=${API_KEY}`;
 
-const timerEl = document.getElementById('timer');
-const startBtn = document.getElementById('start');
+const elements = {
+  temp: document.getElementById('temp'),
+  desc: document.getElementById('description'),
+  humidity: document.getElementById('humidity'),
+  pressure: document.getElementById('pressure'),
+  wind: document.getElementById('wind'),
+  icon: document.getElementById('icon'),
+  time: document.getElementById('time'),
+  date: document.getElementById('date'),
+};
 
-let intervalId = null;
-
-// Форматування часу MM:SS
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-
-  return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+function updateTime() {
+  const now = new Date();
+  elements.time.textContent = now.toLocaleTimeString('uk-UA', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  elements.date.textContent = now.toLocaleDateString('uk-UA', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
 
-// Відобразити стартовий час
-timerEl.textContent = formatTime(totalSeconds);
+async function getWeather() {
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
 
-startBtn.addEventListener('click', () => {
-  if (intervalId) return; // захист від повторного запуску
+    elements.temp.textContent = Math.round(data.main.temp);
+    elements.desc.textContent = data.weather[0].description;
+    elements.humidity.textContent = data.main.humidity;
+    elements.pressure.textContent = data.main.pressure;
+    elements.wind.textContent = data.wind.speed;
 
-  intervalId = setInterval(() => {
-    totalSeconds--;
-    timerEl.textContent = formatTime(totalSeconds);
+    elements.icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  } catch (err) {
+    alert('Помилка завантаження погоди');
+  }
+}
 
-    // 3. Коли таймер закінчився — зупинити
-    if (totalSeconds <= 0) {
-      clearInterval(intervalId);
-      intervalId = null;
-      timerEl.textContent = "00:00";
-    }
-  }, 1000);
-});
+document.getElementById('refresh').addEventListener('click', getWeather);
 
+// старт
+updateTime();
+setInterval(updateTime, 1000);
+getWeather();
