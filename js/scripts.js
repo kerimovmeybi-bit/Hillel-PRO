@@ -1,29 +1,36 @@
-// Home-work20.1
-$(document).ready(function () {
+// Home-work21.1
+//Оптимизированный код (ES6 + Babel)
+$(document).ready(() => {
+  const taskInput = $('#taskInput');
+  const taskList = $('#taskList');
 
-  // Додавання задачі
-  $('#addTask').click(function () {
-    const taskText = $('#taskInput').val().trim();
+  // Добавление задачи
+  $('#addTask').on('click', () => {
+    const taskText = taskInput.val().trim();
 
-    if (taskText !== '') {
-      $('#taskList').append(`
-        <li class="list-group-item task-item">
-          ${taskText}
-        </li>
-      `);
+    if (!taskText) return;
 
-      $('#taskInput').val('');
-    }
+    taskList.append(createTask(taskText));
+    taskInput.val('');
   });
 
-  // Клік по задачі (відкриває модалку)
-  $('#taskList').on('click', '.task-item', function () {
+  // Открытие модалки
+  taskList.on('click', '.task-item', function () {
     const text = $(this).text();
-
-    $('#modalTaskText').text(text);
-
-    const modal = new bootstrap.Modal(document.getElementById('taskModal'));
-    modal.show();
+    showModal(text);
   });
-
 });
+
+// Создание задачи
+const createTask = (text) => `
+  <li class="list-group-item task-item">
+    ${text}
+  </li>
+`;
+
+// Показ модального окна
+const showModal = (text) => {
+  $('#modalTaskText').text(text);
+  const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+  modal.show();
+};
