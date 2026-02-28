@@ -1,7 +1,11 @@
-// Home-work20.1
+// Home-work22.1
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/styles.css';
+import $ from 'jquery';
+
 $(document).ready(function () {
 
-  // Додавання задачі
   $('#addTask').click(function () {
     const taskText = $('#taskInput').val().trim();
 
@@ -16,7 +20,6 @@ $(document).ready(function () {
     }
   });
 
-  // Клік по задачі (відкриває модалку)
   $('#taskList').on('click', '.task-item', function () {
     const text = $(this).text();
 
