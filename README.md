@@ -1,9 +1,3 @@
-Hello it`s my home work. Hillel-PRO.
-TODO API (Node.js + Express + MongoDB)
-
-Features:
-✔ CRUD API
-✔ MongoDB database
-✔ CORS support
-✔ Separate frontend
-✔ REST architecture
+I created a React app and implemented the interface for SWAPI.
+The interface consists of the following components: Header, SearchBar, PlanetList, and PlanetCard.
+For styling, I used Bootstrap via a CDN and additional CSS.
