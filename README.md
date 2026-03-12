@@ -1,3 +1,26 @@
-I created a React app and implemented the interface for SWAPI.
-The interface consists of the following components: Header, SearchBar, PlanetList, and PlanetCard.
-For styling, I used Bootstrap via a CDN and additional CSS.
+Emoji Vote App
+
+Simple React application for voting on emojis.
+Users can click on an emoji to vote. The results are saved in localStorage, and the app can display the winning emoji.
+
+ Features
+
+Vote for emojis by clicking on them
+
+Vote counters update in real time
+
+Data persists using localStorage
+
+"Show Results" button displays the winner
+
+"Clear Results" resets all votes
+
+ Technologies Used
+
+React
+
+JavaScript (ES6)
+
+CSS
+
+LocalStorage
