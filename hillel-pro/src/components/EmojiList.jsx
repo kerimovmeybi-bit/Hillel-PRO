@@ -1,18 +1,35 @@
-import EmojiItem from "./EmojiItem";
+import { useState } from "react";
 
-function EmojiList({emojis,votes,onVote}){
+const emojis = ["😀", "😂", "😍", "😎", "🤩"];
 
-  return(
+function EmojiList() {
 
-    <div className="emoji-list">
+  const [counts, setCounts] = useState([0,0,0,0,0]);
+
+  const handleClick = (index) => {
+
+    const newCounts = [...counts];
+    newCounts[index]++;
+
+    setCounts(newCounts);
+
+  };
+
+  return (
+
+    <div style={{display:"flex", justifyContent:"center", gap:"20px"}}>
 
       {emojis.map((emoji,index)=>(
-        <EmojiItem
+        
+        <div
           key={index}
-          emoji={emoji}
-          votes={votes[index]}
-          onClick={()=>onVote(index)}
-        />
+          onClick={()=>handleClick(index)}
+          style={{cursor:"pointer", fontSize:"40px"}}
+        >
+          {emoji}
+          <p>{counts[index]}</p>
+        </div>
+
       ))}
 
     </div>
