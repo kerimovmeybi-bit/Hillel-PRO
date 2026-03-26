@@ -1,26 +1,16 @@
-Hillel SPA Project
-Description
+Counter App (React + Redux Toolkit)
 
-This is a simple SPA application on React + Vite with the following features:
+A simple counter app implemented using React and Redux Toolkit.
+Allows you to increase and decrease values ​​using buttons.
 
-Header with navigation between Home, Contact, About pages
-
-Home page with TODO form
-
-Dark and light theme with toggle
-
-Error handling via Error Boundary
-
-Technologies
-
+ Functionality
+ Increase value
+ Decrease value
+ Instant UI update via Redux
+ Technologies
 React
-
+Redux Toolkit
+React Redux
 Vite
-
-React Router
-
-JavaScript
-
-CSS
 
 Localhost:http://localhost:5174
