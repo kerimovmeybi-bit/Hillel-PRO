@@ -1,17 +1,20 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeTodo } from "../redux/todos/todosSlice";
 
 export default function TodoList() {
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state) => state.todos.list);
+  const dispatch = useDispatch();
 
   return (
-    <div className="list">
-      <h2>TODOS</h2>
-
+    <ul>
       {todos.map((todo) => (
-        <div className="todo-item" key={todo.id}>
+        <li key={todo.id}>
           {todo.text}
-        </div>
+          <button onClick={() => dispatch(removeTodo(todo.id))}>
+            ❌
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

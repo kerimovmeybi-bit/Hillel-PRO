@@ -1,7 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { clearTodos } from "../redux/todos/todosSlice";
 
 export default function Footer() {
-  const count = useSelector((state) => state.todos.todos.length);
+  const dispatch = useDispatch();
 
-  return <p className="footer">Всього: {count}</p>;
+  return (
+    <footer>
+      <button onClick={() => dispatch(clearTodos())}>
+         Очистити TODO
+      </button>
+    </footer>
+  );
 }
