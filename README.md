@@ -1,16 +1,20 @@
-Counter App (React + Redux Toolkit)
+TODO App (Redux Saga + Vite)
 
-A simple counter app implemented using React and Redux Toolkit.
-Allows you to increase and decrease values ​​using buttons.
+Простой TODO-приложение, реализованное с использованием React, Redux, Redux-Saga и Vite.
+Поддерживает полный функционал управления задачами:
 
- Functionality
- Increase value
- Decrease value
- Instant UI update via Redux
- Technologies
-React
-Redux Toolkit
-React Redux
-Vite
+Добавление задач
+Загрузка задач из localStorage
+Удаление задач
+Отметка выполнения (toggle completed)
+Редактирование задач
+Очистка всех задач
+
+Технологии
+1.React
+2.Redux
+3.Redux-Saga
+4.Vite
+5.CSS для стилей
 
 Localhost:http://localhost:5174
