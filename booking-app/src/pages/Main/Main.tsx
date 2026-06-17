@@ -55,7 +55,7 @@ const Main = () => {
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={2}>
           {/* DESTINATION */}
-          <Grid item xs={3}>
+          <Grid size={3}>
             <TextField
               select
               label="Destination"
@@ -80,7 +80,7 @@ const Main = () => {
           </Grid>
 
           {/* CHECK IN */}
-          <Grid item xs={3}>
+          <Grid size={3}>
             <TextField
               type="date"
               fullWidth
@@ -92,7 +92,7 @@ const Main = () => {
           </Grid>
 
           {/* CHECK OUT */}
-          <Grid item xs={3}>
+          <Grid size={3}>
             <TextField
               type="date"
               fullWidth
@@ -104,17 +104,17 @@ const Main = () => {
           </Grid>
 
           {/* ADULTS */}
-          <Grid item xs={1}>
+          <Grid size={1}>
             <TextField type="number" label="Adults" fullWidth />
           </Grid>
 
           {/* CHILD */}
-          <Grid item xs={1}>
+          <Grid size={1}>
             <TextField type="number" label="Child" fullWidth />
           </Grid>
 
           {/* BUTTON */}
-          <Grid item xs={1}>
+          <Grid size={1}>
             <Button
               variant="contained"
               color="warning"

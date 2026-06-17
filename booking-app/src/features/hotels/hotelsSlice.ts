@@ -7,7 +7,7 @@ const slice = createSlice({
     setHotels: (state, action) => {
       state.list = action.payload;
     },
-    fetchHotels: (state, action) => {}, //  ДЛЯ SAGA
+    fetchHotels: (_state, _action) => {}, // для SAGA
   },
 });
 

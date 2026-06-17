@@ -71,7 +71,7 @@ const Hotels = () => {
         <Grid container spacing={3}>
           {filteredHotels.length > 0 ? (
             filteredHotels.map((hotel: any) => (
-              <Grid item xs={12} md={6} lg={4} key={hotel.id}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }} key={hotel.id}>
                 <Card
                   onClick={() => navigate(`/hotels/${hotel.id}`)} // ✅ КЛИК
                   sx={{
@@ -96,7 +96,10 @@ const Hotels = () => {
                   />
 
                   <CardContent>
-                    <Typography variant="h6" fontWeight="bold">
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: "bold" }}
+                    >
                       {hotel.name}
                     </Typography>
 

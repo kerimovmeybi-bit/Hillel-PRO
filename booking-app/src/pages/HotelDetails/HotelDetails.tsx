@@ -49,7 +49,10 @@ const HotelDetails = () => {
           />
 
           {/* NAME */}
-          <Typography variant="h4" fontWeight="bold">
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: "bold" }}
+          >
             {hotel.name}
           </Typography>
 
